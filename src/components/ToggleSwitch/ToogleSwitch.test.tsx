@@ -4,10 +4,12 @@ import ToggleSwitch from './ToggleSwitch';
 import React from 'react';
 
 describe('ToggleSwitch Component', () => {
-  it('debe renderizar con el estado inicial apagado', () => {
-    render(<ToggleSwitch label="Prueba" defaultChecked={false} />);
-    const switchElement = screen.getByRole('switch', { name: /prueba/i });
-    expect(switchElement).not.toBeChecked();
+  it('debe renderizar con el estado inicial encendido', () => {
+    render(<ToggleSwitch label="Prueba" defaultChecked={true} />);
+    const switchElement = screen.getByRole('switch', {
+      name: /prueba/i,
+    });
+    expect(switchElement).toBeChecked();
   });
 
   it('debe cambiar a encendido al hacer clic', () => {

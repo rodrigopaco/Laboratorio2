@@ -6,19 +6,24 @@ export interface ToggleSwitchProps {
   label?: string;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
+  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 }
 
 export default function ToggleSwitch({
-  label = 'Toggle',
+  label = 'Activar',
   defaultChecked = false,
   onChange,
+  color = 'primary',
 }: ToggleSwitchProps) {
   const [checked, setChecked] = useState(defaultChecked);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newChecked = event.target.checked;
     setChecked(newChecked);
-    if (onChange) onChange(newChecked);
+
+    if (onChange) {
+      onChange(newChecked);
+    }
   };
 
   return (
@@ -28,7 +33,7 @@ export default function ToggleSwitch({
           checked={checked}
           onChange={handleChange}
           data-testid="toggle-switch"
-          color="primary"
+          color={color}
         />
       }
       label={label}
